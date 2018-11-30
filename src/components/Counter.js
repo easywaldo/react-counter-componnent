@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import classNames from 'classnames';
-import Icon from '@material-ui/core/Icon';
+import Popover from '@material-ui/core/Popover';
 import red from '@material-ui/core/colors/red';
 
 const styles = theme => ({
@@ -36,6 +35,7 @@ class Counter extends Component {
     }
 
     substract = () => {
+        if (this.state.count <= 0) return;
         this.setState({
             count: this.state.count - 1
         })
@@ -49,7 +49,7 @@ class Counter extends Component {
                 <Button variant="contained" color="primary" onClick={this.substract}>-</Button>
                 <Paper>
                     <Typography variant="h5" component="h3">
-                    상품수량 카운터
+                    Counter
                     </Typography>
                     <Typography component="p">
                     {this.state.count}
