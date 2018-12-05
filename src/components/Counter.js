@@ -2,29 +2,60 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import classNames from 'classnames';
+import Icon from '@material-ui/core/Icon';
+import red from '@material-ui/core/colors/red';
 
 const styles = theme => ({
-    root: {
-      ...theme.mixins.gutters(),
-      paddingTop: theme.spacing.unit * 2,
-      paddingBottom: theme.spacing.unit * 2,
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+  icon: {
+    margin: theme.spacing.unit * 2,
+  },
+  iconHover: {
+    margin: theme.spacing.unit * 2,
+    '&:hover': {
+      color: red[800],
     },
-  });
+  },
+});
+
 
 class Counter extends Component {
+    state = {
+        count: 0
+    }
+
+    addCount = () => {
+        this.setState({
+            count: this.state.count + 1
+        })
+    }
+
+    substract = () => {
+        this.setState({
+            count: this.state.count - 1
+        })
+    }
+
     render() {
+        const { classes } = this.props;
+
         return (
-            <div>
-                <Button variant="contained" color="primary">-</Button>
+            <div className={classes}>
+                <Button variant="contained" color="primary" onClick={this.substract}>-</Button>
                 <Paper>
                     <Typography variant="h5" component="h3">
-                    This is a sheet of paper.
+                    상품수량 카운터
                     </Typography>
                     <Typography component="p">
-                    Paper can be used to build surface or other elements for your application.
+                    {this.state.count}
                     </Typography>
                 </Paper>
-                <Button variant="contained" color="primary">+</Button>
+                <Button variant="contained" color="primary" onClick={this.addCount}>+</Button>
             </div>
         );
     }
