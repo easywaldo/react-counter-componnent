@@ -6,18 +6,18 @@ import Typography from '@material-ui/core/Typography';
 
 class Counter extends Component {
     state = {
-        id: 0,
-        productName: "",
-        count: 0
+        id: this.props.id,
+        productName: this.props.name,
+        count: 1
     }
 
-    addCount = () => {
+    increamentCount = () => {
         this.setState({
             count: this.state.count + 1
         })
     }
 
-    substract = () => {
+    decreamentCount = () => {
         if (this.state.count <= 0) return;
         this.setState({
             count: this.state.count - 1
@@ -30,9 +30,9 @@ class Counter extends Component {
                     <AppBar position="static" color="default">
                         <Typography variant="h6" color="inherit">
                             <Toolbar>
-                            <Button variant="contained" color="primary" onClick={this.substract}>-</Button>
+                            <Button variant="contained" color="primary" onClick={this.decreamentCount}>-</Button>
                                 상품 : {this.props.product.name} 수량 : {this.state.count}
-                            <Button variant="contained" color="primary" onClick={this.addCount}>+</Button>
+                            <Button variant="contained" color="primary" onClick={this.increamentCount}>+</Button>
                             </Toolbar>
                         </Typography>
                     </AppBar>

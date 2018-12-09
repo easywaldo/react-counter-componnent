@@ -3,6 +3,7 @@ import './App.css';
 import Counter from './components/Counter';
 
 var productInfo = {
+  id: 999,
   name: "게살볶음밥"
 }
 
