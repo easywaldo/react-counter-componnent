@@ -8,7 +8,8 @@ class Counter extends Component {
     state = {
         id: this.props.id,
         productName: this.props.name,
-        count: 1
+        count: 1,
+        error: false,
     }
 
     increamentCount = () => {
@@ -24,9 +25,41 @@ class Counter extends Component {
         })
     }
 
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        if (prevState.count !== this.state.count) {
+            console.log('snapshot changed');
+
+            return {
+                count:prevState.count
+            };
+        }
+
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (snapshot) {
+            console.log('value 값이 바뀌었다!', snapshot.count);
+        }
+    }
+
+    componentDidCatch(error, info) {
+        console.log(error);
+        console.log(info);
+
+        this.setState({
+            error: true,
+        })
+    }
+
     render() {
+        if (this.state.error) {
+            return (
+                <div>에러가 발생하였습니다.</div>
+            )
+        }
         return (
             <div>
+                {this.props.missing}
                     <AppBar position="static" color="default">
                         <Typography variant="h6" color="inherit">
                             <Toolbar>
