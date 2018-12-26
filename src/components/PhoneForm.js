@@ -14,12 +14,11 @@ class PhoneForm extends Component {
     }
 
     handleSubmit = (e) => {
-        //e.preventDefalut();
-        e.nativeEvent.stopImmediatePropagation();
+        e.preventDefault();
         this.props.onCreate(this.state);
         this.setState({
-            name: '',
-            phone: "",
+          name: '',
+          phone: '',
         })
     }
 
@@ -40,8 +39,7 @@ class PhoneForm extends Component {
                 <div>
 
                 <button type="submit">등록</button>
-                {/* {this.state.name}
-                {this.state.phone} */}
+                {/* <div>{this.state.name} {this.state.phone}</div> */}
                 </div>
                 </form>
             </div>

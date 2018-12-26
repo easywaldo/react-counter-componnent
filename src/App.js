@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Counter from './components/Counter';
 import PhoneForm from './components/PhoneForm';
+import PhoneInfoList from './components/PhoneInfoList';
 
 var productInfo = {
   id: 999,
@@ -13,21 +14,23 @@ class App extends Component {
     information: [],
   }
   
-  handleCreate = (data) =>{
+  handleCreate = (data) => {
     console.log(data);
     const { information } = this.state;
     this.setState({
-      information: information.concat(data),
-    })
+      information: information.concat({
+        ...data,
+        id: this.id++,
+      })
+    });
   }
-
-
 
   render() {
     return (
       <div className="App">
         <PhoneForm onCreate={this.handleCreate} />
-        {JSON.stringify(this.state.information)}
+        <PhoneInfoList data={this.state.information}/>
+        {/* {JSON.STRINGIFY(THIS.STATE.INFORMATION)} */}
         {/* <Counter product={productInfo} /> */}
       </div>
     );
