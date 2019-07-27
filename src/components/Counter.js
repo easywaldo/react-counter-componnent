@@ -3,25 +3,31 @@ import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 
 class Counter extends Component {
-    state = {
-        id: this.props.id,
-        productName: this.props.name,
-        count: 1,
-        error: false,
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: this.props.product.id,
+            productName: this.props.product.name,
+            increasementSize: this.props.product.size,
+            count: this.props.product.count,
+            error: false
+        };
     }
 
     increamentCount = () => {
+        console.log(this.state.incrementSize);
         this.setState({
-            count: this.state.count + 1
+            count: this.state.count + this.state.increasementSize
         })
     }
 
     decreamentCount = () => {
-        if (this.state.count <= 0) return;
+        if (this.state.count <= this.state.increasementSize) return;
         this.setState({
-            count: this.state.count - 1
+            count: this.state.count - this.state.increasementSize
         })
     }
 
@@ -30,7 +36,7 @@ class Counter extends Component {
             console.log('snapshot changed');
 
             return {
-                count:prevState.count
+                count:prevState.count,
             };
         }
 
@@ -60,15 +66,27 @@ class Counter extends Component {
         return (
             <div>
                 {this.props.missing}
+                <Container maxWidth="sm">
+
                     <AppBar position="static" color="default">
                         <Typography variant="h6" color="inherit">
                             <Toolbar>
-                            <Button variant="contained" color="primary" onClick={this.decreamentCount}>-</Button>
-                                상품 : {this.props.product.name} 수량 : {this.state.count}
-                            <Button variant="contained" color="primary" onClick={this.increamentCount}>+</Button>
+                                상품 : [{this.state.id}]{this.state.productName}
+                                <br/>
+                                수량 : {this.state.count}
+                            <Button 
+                                variant="contained"
+                                color="primary"
+                                onClick={this.increamentCount}>+
+                            </Button>
+                            <Button variant="contained" color="primary" 
+                                onClick={this.decreamentCount}>-
+                            </Button>
                             </Toolbar>
                         </Typography>
                     </AppBar>
+
+                </Container>
             </div>
         );
     }

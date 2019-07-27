@@ -5,9 +5,12 @@ import PhoneForm from './components/PhoneForm';
 import PhoneInfoList from './components/PhoneInfoList';
 
 var productInfo = {
-  id: 999,
-  name: "게살볶음밥"
-}
+  id: "999",
+  name: "게살볶음밥",
+  count: 20,
+  size: 10
+};
+
 
 class App extends Component {
   state = {
@@ -31,7 +34,7 @@ class App extends Component {
         <PhoneForm onCreate={this.handleCreate} />
         <PhoneInfoList data={this.state.information}/>
         {/* {JSON.STRINGIFY(THIS.STATE.INFORMATION)} */}
-        {/* <Counter product={productInfo} /> */}
+        <Counter product={productInfo} />
       </div>
     );
   }
