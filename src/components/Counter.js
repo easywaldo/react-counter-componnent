@@ -67,7 +67,7 @@ class Counter extends Component {
             <div>
                 {this.props.missing}
                 <Container maxWidth="sm">
-
+                    카운터
                     <AppBar position="static" color="default">
                         <Typography variant="h6" color="inherit">
                             <Toolbar>
