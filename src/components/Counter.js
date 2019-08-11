@@ -57,6 +57,12 @@ class Counter extends Component {
         })
     }
 
+    addCartItem = () => {
+        //console.log(this.state);
+        this.props.callbackFromParent(this.state);
+        console.log('sent state');
+    }
+
     render() {
         if (this.state.error) {
             return (
@@ -81,6 +87,11 @@ class Counter extends Component {
                             </Button>
                             <Button variant="contained" color="primary" 
                                 onClick={this.decreamentCount}>-
+                            </Button>
+                            <br/>
+                            <Button variant="contained" color="primary"
+                                onClick={this.addCartItem}>
+                                카트추가
                             </Button>
                             </Toolbar>
                         </Typography>
