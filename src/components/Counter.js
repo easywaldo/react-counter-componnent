@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -6,6 +7,10 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 class Counter extends Component {
+    static propTypes = {
+        product: PropTypes.object
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -17,8 +22,9 @@ class Counter extends Component {
         };
     }
 
+
     increamentCount = () => {
-        console.log(this.state.incrementSize);
+        //console.log(this.state.incrementSize);
         this.setState({
             count: this.state.count + this.state.increasementSize
         })
@@ -60,7 +66,7 @@ class Counter extends Component {
     addCartItem = () => {
         //console.log(this.state);
         this.props.callbackFromParent(this.state);
-        console.log('sent state');
+        //console.log('sent state');
     }
 
     render() {
@@ -102,5 +108,6 @@ class Counter extends Component {
         );
     }
 }
+
 
 export default Counter;

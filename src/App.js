@@ -35,10 +35,10 @@ class App extends Component {
     console.log(item);
     this.setState({
       cartList: cartList.concat({
-      ...item,
+        ...item,
       })
     });
-    console.log(this.state);
+    //console.log(this.state);
   }
 
   render() {
@@ -49,10 +49,11 @@ class App extends Component {
         {/* {JSON.STRINGIFY(THIS.STATE.INFORMATION)} */}
         <Counter callbackFromParent={this.itemCounterCallBack} product={productInfo} />
 
+        <br/>
 
         <div>
-          Cart
-          <Cart cartItemList={this.cartList} />
+          Cart Item List
+          <Cart data={this.state.cartList} />
         </div>
       </div>
     );
